@@ -2,7 +2,7 @@
 # UF COP3502C Summer 2023
 # Encoder: Angelica L Bohl - Copied into cloned repository owned by enkille
 # Unable to reach lab partner. My husband created a repository for me to use
-# Decoder:
+# Decoder: Angelica L Bohl
 
 
 def menu():
@@ -32,10 +32,19 @@ def encode(pw):
     return encoded_pw
 
 
+def decode(encoded_pw):
+    """Function for decoding password"""
+    decoded_pw = ''
+    for i in encoded_pw:
+        decoded_pw += str(int(i) - 3)
+    return decoded_pw
+
+
 """Main body of program for encoding/decoding password"""
 encoding = True
 password = ''
 encoded_pw = ''
+decoded_pw = ''
 
 while encoding:
     selection = menu()
@@ -44,7 +53,11 @@ while encoding:
         encoded_pw = encode(password)
         print('Your password has been encoded and stored!\n')
     elif selection == 2:
-        pass
+        decoded_pw = decode(encoded_pw)
+        if decoded_pw != password:
+            print('Error! Something went wrong. Please try again.')
+            continue
+        print(f'The encoded password is {encoded_pw} and the original password is {decoded_pw}')
     elif selection == 3:
         break
     else:
